@@ -1,0 +1,33 @@
+.addNewContainer {
+    height: 20px;
+    width: 90.1%;
+    padding: 5px 5%;
+    font-family: 'Poppins';
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    color: #8BE9FD;
+}
+
+.addNewInput {
+    outline: none;
+    height: 20px;
+    background: none;
+    color: #8BE9FD;
+    border: none;
+} 
+
+.addNewInput::placeholder {
+    font-family: 'Poppins';
+    font-size: 0.75rem;
+}
+
+.errorContainer {
+    height: 20px;
+    display:flex;
+    margin:0 0 10px 5%;
+    align-items:center;
+    font-family: 'Poppins';
+    font-size: 0.65rem;
+    color:#FF5555;
+}

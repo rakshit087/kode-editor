@@ -1,0 +1,18 @@
+.topBar {
+    width: 100%;
+    height: 30px;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    color: #8BE9FD;
+    margin-bottom: 10px;
+}
+
+.icon {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.icon:hover {
+    color: #FF79C6;
+}
