@@ -44,10 +44,6 @@ function App(): JSX.Element {
     console.log("hello",res.data);
     setData(res.data);
   });
-  // useEffect(() => {
-    
-  // }, []);
-  //Adding New Project is not yet implemented
   const [project, updateProject] = useState<string>(
     Object.keys(data.projects)[0]
   );
