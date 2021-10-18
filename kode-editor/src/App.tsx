@@ -40,12 +40,10 @@ interface Data {
 function App(): JSX.Element {
   const [theme, setTheme] = useState<any>(DraculaTheme);
   const [data, setData] = useState<any>({});
-  useEffect(() => {
-    Initialize.getData().then((res) => {
-      setData(res.data);
-    });
-  }, []);
-  //Adding New Project is not yet implemented
+  Initialize.getData().then((res) => {
+    console.log("hello",res.data);
+    setData(res.data);
+  });
   const [project, updateProject] = useState<string>(
     Object.keys(data.projects)[0]
   );
