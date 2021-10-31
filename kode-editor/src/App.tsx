@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import MonacoEditor from "./components/MonacoEditor";
 //Import Components
 import Explorer from "./components/Explorer";
-import Terminal from "./components/Terminal";
+// import Terminal from "./components/Terminal";
 import OutputWindow from "./components/OutputWindow";
 //Import API Services
 import Initialize from "./services/Initialize";
@@ -45,11 +45,15 @@ interface Data {
 
 function App(): JSX.Element {
   const [theme, setTheme] = useState<Theme>(DraculaTheme);
-  const [data, setData] = useState<any>({});
+  const [data, setData] = useState<any>({}); 
+
+  //Get data from server
   Initialize.getData().then((res) => {
     console.log("hello",res.data);
     setData(res.data);
   });
+
+  //Update default selected Project and file
   const [project, updateProject] = useState<string>(
     Object.keys(data.projects)[0]
   );
@@ -57,17 +61,19 @@ function App(): JSX.Element {
     Object.keys(data.projects[project].files)[0]
   );
 
-  //Function to Update Selected File
+  //Update Selected File
   const callUpdateFile = (fileName: string) => {
     updateFile(fileName);
   };
 
+  //Update file's content
   const callUpdateData = (fileName: string, content: string) => {
     let tempData = data;
     tempData.projects[project].files[fileName].content = content;
     setData(tempData);
   };
 
+  //Add a new file
   const callAddNewFile = (fileName: string, type: string) => {
     let tempData = data;
     tempData.projects[project].files[fileName] = {
@@ -99,7 +105,7 @@ function App(): JSX.Element {
           content={data.projects[project].files[file].content}
           onContentUpdate={callUpdateData}
         />
-        <Terminal />
+        {/* <Terminal /> */}
       </div>
       <div className="outputContainer">
         <OutputWindow />
