@@ -1,14 +1,20 @@
-import { useState } from "react";
+//Import Dependencies
+import { useState, useEffect } from "react";
 import MonacoEditor from "./components/MonacoEditor";
+//Import Components
 import Explorer from "./components/Explorer";
 import Terminal from "./components/Terminal";
 import OutputWindow from "./components/OutputWindow";
+//Import API Services
 import Initialize from "./services/Initialize";
+//Import Interfaces
+import Theme from "./interfaces/theme";
+//Import CSS
 import "./App.css";
-import { useEffect } from "react";
+
 
 //The Theme For Project
-const DraculaTheme = {
+const DraculaTheme : Theme = {
   bg: "#21222C",
   bgl: "#282a36",
   fg: "#F8F8F2",
@@ -38,7 +44,7 @@ interface Data {
 }
 
 function App(): JSX.Element {
-  const [theme, setTheme] = useState<any>(DraculaTheme);
+  const [theme, setTheme] = useState<Theme>(DraculaTheme);
   const [data, setData] = useState<any>({});
   Initialize.getData().then((res) => {
     console.log("hello",res.data);
