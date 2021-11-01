@@ -32,13 +32,6 @@ export default function MonacoEditor(props: Props) {
           minimap: {
             enabled: false,
           },
-          automaticLayout: true,
-          autoClosingBrackets: true,
-          autoClosingQuotes: true,
-          autoIndent: true,
-          formatOnPaste: true,
-          formatOnType: true,
-          formatDocument: true,
         }}
         onChange={(value, ev) => {
           props.onContentUpdate(props.name, value!);

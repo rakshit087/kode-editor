@@ -9,12 +9,13 @@ import OutputWindow from "./components/OutputWindow";
 import Initialize from "./services/Initialize";
 //Import Interfaces
 import Theme from "./interfaces/theme";
+import Data from "./interfaces/data";
 //Import CSS
 import "./App.css";
 
 
 //The Theme For Project
-const DraculaTheme : Theme = {
+const DraculaTheme: Theme = {
   bg: "#21222C",
   bgl: "#282a36",
   fg: "#F8F8F2",
@@ -29,54 +30,42 @@ const DraculaTheme : Theme = {
   yellow: "#F1FA8C",
 };
 
-//Data Interface
-interface Data {
-  projects: {
-    [key: string]: {
-      files: {
-        [key: string]: {
-          type: string;
-          content: string;
-        };
-      };
-    };
-  };
-}
-
 function App(): JSX.Element {
   const [theme, setTheme] = useState<Theme>(DraculaTheme);
-  const [data, setData] = useState<any>({}); 
-
-  //Get data from server
-  Initialize.getData().then((res) => {
-    console.log("hello",res.data);
-    setData(res.data);
+  const [data, setData] = useState<Data>({
+    '': {
+      type: '',
+      content: ''
+    }
   });
 
-  //Update default selected Project and file
-  const [project, updateProject] = useState<string>(
-    Object.keys(data.projects)[0]
-  );
-  const [file, updateFile] = useState<string>(
-    Object.keys(data.projects[project].files)[0]
-  );
+  //Get data from server
+  useEffect(() => {
+    console.log("Use Effect")
+    Initialize.getData().then((res) => {
+      setData(res.data);
+      console.log(res);
+    });
+  }, []);
+
+  const [selectedFile, setSelectedFile] = useState<string>('app.js');
 
   //Update Selected File
   const callUpdateFile = (fileName: string) => {
-    updateFile(fileName);
+    setSelectedFile(fileName);
   };
 
   //Update file's content
   const callUpdateData = (fileName: string, content: string) => {
     let tempData = data;
-    tempData.projects[project].files[fileName].content = content;
+    tempData[fileName].content = content;
     setData(tempData);
   };
 
   //Add a new file
   const callAddNewFile = (fileName: string, type: string) => {
     let tempData = data;
-    tempData.projects[project].files[fileName] = {
+    tempData[fileName] = {
       type: type,
       content: "",
     };
@@ -87,9 +76,9 @@ function App(): JSX.Element {
       <div className="explorerContainer" style={{ backgroundColor: theme.bg }}>
         <Explorer
           theme={DraculaTheme}
-          projectFiles={data.projects[project]}
-          projectName={project}
-          selectedFile={file}
+          projectFiles={data}
+          projectName="My Project"
+          selectedFile={selectedFile}
           onUpdateFile={callUpdateFile}
           onAddNewFile={callAddNewFile}
         />
@@ -100,9 +89,9 @@ function App(): JSX.Element {
       >
         <MonacoEditor
           theme={DraculaTheme}
-          type={data.projects[project].files[file].type}
-          name={file}
-          content={data.projects[project].files[file].content}
+          type={data[selectedFile].type}
+          name={selectedFile}
+          content={data[selectedFile].content}
           onContentUpdate={callUpdateData}
         />
         {/* <Terminal /> */}

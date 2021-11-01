@@ -5,20 +5,14 @@ import { VscNewFile } from "react-icons/vsc";
 import { AddNew } from "./AddNew";
 import { useState } from "react";
 import { types } from "util";
+import Data from "../interfaces/data";
 
 //Props interface (I <3 Typescript)
 interface Props {
   theme: Theme;
   projectName: string;
   selectedFile: string;
-  projectFiles: {
-    files: {
-      [key: string]: {
-        type: string;
-        content: string;
-      };
-    };
-  };
+  projectFiles: Data
   onUpdateFile: (fileName: string) => void | undefined;
   onAddNewFile: (fileName: string, type: string) => void;
 }
@@ -57,7 +51,7 @@ export default function Explorer(props: Props): JSX.Element {
 
       {/* Container that contains Files List */}
       <div>
-        {Object.entries(props.projectFiles.files).map(([key, file]) => (
+        {Object.entries(props.projectFiles).map(([key, file]) => (
           <Files
             key={key}
             name={key}
