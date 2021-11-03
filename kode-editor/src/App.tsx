@@ -33,15 +33,14 @@ const DraculaTheme: Theme = {
 function App(): JSX.Element {
   const [theme, setTheme] = useState<Theme>(DraculaTheme);
   const [data, setData] = useState<Data>({
-    '': {
-      type: '',
+    'app.js': {
+      type: 'javascript',
       content: ''
     }
   });
 
   //Get data from server
   useEffect(() => {
-    console.log("Use Effect")
     Initialize.getData().then((res) => {
       setData(res.data);
       console.log(res);
@@ -70,7 +69,6 @@ function App(): JSX.Element {
       content: "",
     };
   };
-
   return (
     <div className="mainContainer">
       <div className="explorerContainer" style={{ backgroundColor: theme.bg }}>
