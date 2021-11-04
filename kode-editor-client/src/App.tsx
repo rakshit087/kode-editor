@@ -70,7 +70,7 @@ function App(): JSX.Element {
     };
   };
   return (
-    <div className="mainContainer">
+    <div className="flex">
       <div className="explorerContainer" style={{ backgroundColor: theme.bg }}>
         <Explorer
           theme={DraculaTheme}

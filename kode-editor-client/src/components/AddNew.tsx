@@ -1,6 +1,7 @@
 import "./AddNew.css";
 import { useState } from "react";
 import FileIcon from "./FileIcon";
+
 interface Props {
   onEnter: (name: string, type: string) => void;
   placeholder: string;
