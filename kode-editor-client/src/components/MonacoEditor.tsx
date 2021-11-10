@@ -1,10 +1,9 @@
 import Editor from "@monaco-editor/react";
-import Theme from "../interfaces/theme";
 import { RiSaveLine } from "react-icons/ri";
 import "./MonacoEditor.css";
 
+
 interface Props {
-  theme: Theme;
   type: string;
   name: string;
   content: string;
@@ -15,12 +14,11 @@ export default function MonacoEditor(props: Props) {
   return (
     <>
       {/* Top Bar Containing Reformat Code and Save Icon */}
-      <div className="topBar" style={{ backgroundColor: props.theme.bg }}>
-        {/* <VscJson className="icon" onClick={() => {setFormat(!format)}} /> */}
+      <div className="topBar bg-bg">
         <RiSaveLine className="icon" />
       </div>
       <Editor
-        theme="dracula"
+        theme="onedark"
         height="75%"
         width="100%"
         path={props.name}
@@ -49,33 +47,33 @@ export default function MonacoEditor(props: Props) {
 
   //Setting Up Theme for Editor (Ugly Code!!)
   function setEditorTheme(monaco: any) {
-    monaco.editor.defineTheme("dracula", {
+    monaco.editor.defineTheme("onedark", {
       base: "vs-dark",
       inherit: true,
       //Defining Theme for the Editor (Using Dracula's Official Theme)
       rules: [
         {
           token: "comment",
-          foreground: props.theme.comment,
+          foreground: '#5d7988',
           fontStyle: "italic",
         },
-        { token: "constant", foreground: props.theme.purple },
-        { token: "keyword", foreground: props.theme.pink },
-        { token: "support", foreground: props.theme.cyan },
-        { token: "punctuation", foreground: props.theme.pink },
-        { token: "string", foreground: props.theme.yellow },
-        { token: "variable", foreground: props.theme.fg },
-        { token: "number", foreground: props.theme.purple },
-        { token: "tag", foreground: props.theme.pink },
-        { token: "attribute.name", foreground: props.theme.green },
-        { token: "attribute.value", foreground: props.theme.yellow },
-        { token: "identifier", foreground: props.theme.green },
+        { token: "constant", foreground: 'e06c75' },
+        { token: "keyword", foreground: '#c678dd' },
+        { token: "support", foreground:  '#56b6c2'},
+        { token: "punctuation", foreground: 'abb2bf' },
+        { token: "string", foreground: '#98c379' },
+        { token: "variable", foreground: '#e5c07b' },
+        { token: "number", foreground: '#e5c07b' },
+        { token: "tag", foreground: '#e06c75' },
+        { token: "attribute.name", foreground: '#e06c75' },
+        { token: "attribute.value", foreground: '#98c379'},
+        { token: "identifier", foreground: '#61afef' },
       ],
       colors: {
-        "editor.background": props.theme.bgl,
-        "editor.foreground": props.theme.fg,
-        "editorLineNumber.foreground": props.theme.comment,
-        "editor.selectionBackground": props.theme.selection,
+        "editor.background": '#282c34',
+        "editor.foreground": '#abb2bf',
+        "editorLineNumber.foreground": '#5d7988',
+        "editor.selectionBackground": '#363a46',
       },
     });
   }

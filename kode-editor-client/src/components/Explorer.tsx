@@ -1,15 +1,12 @@
 import "./Explorer.css";
 import Files from "./Files";
-import Theme from "../interfaces/theme";
 import { VscNewFile } from "react-icons/vsc";
 import { AddNew } from "./AddNew";
 import { useState } from "react";
-import { types } from "util";
 import Data from "../interfaces/data";
 
 //Props interface (I <3 Typescript)
 interface Props {
-  theme: Theme;
   projectName: string;
   selectedFile: string;
   projectFiles: Data
@@ -23,7 +20,7 @@ export default function Explorer(props: Props): JSX.Element {
     //Main Explorer Container
     <>
       {/* Top Tab That Shows Project name and Add File Button */}
-      <div className="topTab" style={{ backgroundColor: props.theme.bgl }}>
+      <div className="topTab bg-bgl">
         <p className="projectName">{props.projectName}</p>
         <VscNewFile
           className="addFileButton"
@@ -57,7 +54,6 @@ export default function Explorer(props: Props): JSX.Element {
             name={key}
             type={file.type}
             selected={`${props.selectedFile === key ? true : false}`}
-            theme={props.theme}
             onUpdateFile={props.onUpdateFile}
           />
         ))}

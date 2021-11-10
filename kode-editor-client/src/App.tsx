@@ -8,30 +8,11 @@ import OutputWindow from "./components/OutputWindow";
 //Import API Services
 import Initialize from "./services/Initialize";
 //Import Interfaces
-import Theme from "./interfaces/theme";
 import Data from "./interfaces/data";
 //Import CSS
 import "./App.css";
 
-
-//The Theme For Project
-const DraculaTheme: Theme = {
-  bg: "#21222C",
-  bgl: "#282a36",
-  fg: "#F8F8F2",
-  selection: "#44475A",
-  comment: "#6272A4",
-  cyan: "#8BE9FD",
-  green: "#50FA7B",
-  orange: "#FFB86C",
-  pink: "#FF79C6",
-  purple: "#BD93F9",
-  red: "#FF5555",
-  yellow: "#F1FA8C",
-};
-
 function App(): JSX.Element {
-  const [theme, setTheme] = useState<Theme>(DraculaTheme);
   const [data, setData] = useState<Data>({
     'app.js': {
       type: 'javascript',
@@ -71,9 +52,8 @@ function App(): JSX.Element {
   };
   return (
     <div className="flex">
-      <div className="explorerContainer" style={{ backgroundColor: theme.bg }}>
+      <div className="explorerContainer bg-bg">
         <Explorer
-          theme={DraculaTheme}
           projectFiles={data}
           projectName="My Project"
           selectedFile={selectedFile}
@@ -82,11 +62,9 @@ function App(): JSX.Element {
         />
       </div>
       <div
-        className="editorTerminalContainar"
-        style={{ backgroundColor: theme.bgl }}
+        className="editorTerminalContainar bg-bg"
       >
         <MonacoEditor
-          theme={DraculaTheme}
           type={data[selectedFile].type}
           name={selectedFile}
           content={data[selectedFile].content}
