@@ -1,7 +1,5 @@
 import Editor from "@monaco-editor/react";
 import { RiSaveLine } from "react-icons/ri";
-import "./MonacoEditor.css";
-
 
 interface Props {
   type: string;
@@ -14,8 +12,8 @@ export default function MonacoEditor(props: Props) {
   return (
     <>
       {/* Top Bar Containing Reformat Code and Save Icon */}
-      <div className="topBar bg-bg">
-        <RiSaveLine className="icon" />
+      <div className="flex flex-row-reverse items-center px-3 h-8 text-offwhite text-lg">
+        <RiSaveLine className="hover:text-green transition-color duration-150" />
       </div>
       <Editor
         theme="onedark"
@@ -25,7 +23,7 @@ export default function MonacoEditor(props: Props) {
         language={props.type}
         defaultValue={props.content}
         beforeMount={setEditorTheme}
-        // onMount={formatCode}
+        onMount={formatCode}
         options={{
           minimap: {
             enabled: false,
