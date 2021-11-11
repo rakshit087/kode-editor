@@ -1,4 +1,3 @@
-import "./Explorer.css";
 import Files from "./Files";
 import { VscNewFile } from "react-icons/vsc";
 import { AddNew } from "./AddNew";
@@ -20,10 +19,10 @@ export default function Explorer(props: Props): JSX.Element {
     //Main Explorer Container
     <>
       {/* Top Tab That Shows Project name and Add File Button */}
-      <div className="topTab bg-dark">
+      <div className="flex items-center justify-between h-8 px-3 text-offwhite text-sm font-bold bg-dark ">
         <p className="projectName">{props.projectName}</p>
         <VscNewFile
-          className="addFileButton"
+          className="text-lg cursor-pointer hover:text-green transition-color"
           onClick={() => {
             setViewAddFile(!viewAddFile);
           }}
