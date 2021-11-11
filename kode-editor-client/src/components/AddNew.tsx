@@ -10,7 +10,7 @@ export function AddNew(props: Props): JSX.Element {
   const [name, setName] = useState<string>("");
   let type: string;
   return (
-    <div className="px-3 py-2 text-offwhite flex items-center text-xs">
+    <div className="px-3 py-1 text-offwhite flex items-center text-sm">
       <FileIcon type="other" />
       <input
         className="w-full outline-none border-none bg-transparent"
