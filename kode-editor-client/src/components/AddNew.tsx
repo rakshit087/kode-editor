@@ -1,4 +1,3 @@
-import "./AddNew.css";
 import { useState } from "react";
 import FileIcon from "./FileIcon";
 
@@ -11,10 +10,10 @@ export function AddNew(props: Props): JSX.Element {
   const [name, setName] = useState<string>("");
   let type: string;
   return (
-    <div className="addNewContainer">
+    <div className="px-3 py-2 text-offwhite flex items-center text-xs">
       <FileIcon type="other" />
       <input
-        className="addNewInput"
+        className="w-full outline-none border-none bg-transparent"
         placeholder={props.placeholder}
         onChange={(e) => {
           setName(e.target.value);

@@ -20,7 +20,7 @@ export default function Explorer(props: Props): JSX.Element {
     //Main Explorer Container
     <>
       {/* Top Tab That Shows Project name and Add File Button */}
-      <div className="topTab bg-bgl">
+      <div className="topTab bg-dark">
         <p className="projectName">{props.projectName}</p>
         <VscNewFile
           className="addFileButton"

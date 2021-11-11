@@ -3,8 +3,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      bg: '#21252b',
-      bgl: '#282c34', 
+      darkest: '#21252b',
+      dark: '#282c34', 
       offwhite: '#abb2bf',
       cyan: '#56b6c2', 
       green: '#98c379', 
@@ -12,6 +12,7 @@ module.exports = {
       red: '#e06c75', 
       yellow: '#e5c07b',
       blue: '#61afef',
+      transparent: 'transparent'
     },
     extend: {},
   },
