@@ -9,8 +9,6 @@ import OutputWindow from "./components/OutputWindow";
 import Initialize from "./services/Initialize";
 //Import Interfaces
 import Data from "./interfaces/data";
-//Import CSS
-import "./App.css";
 
 function App(): JSX.Element {
   const [data, setData] = useState<Data>({
@@ -52,17 +50,17 @@ function App(): JSX.Element {
   };
   return (
     <div className="flex">
-      <div className="explorerContainer bg-bg">
+      <div className="h-screen w-1/6 bg-darkest">
         <Explorer
           projectFiles={data}
-          projectName="My Project"
+          projectName="EXPLORER"
           selectedFile={selectedFile}
           onUpdateFile={callUpdateFile}
           onAddNewFile={callAddNewFile}
         />
       </div>
       <div
-        className="editorTerminalContainar bg-bg"
+        className="bg-dark w-1/2"
       >
         <MonacoEditor
           type={data[selectedFile].type}
@@ -72,7 +70,7 @@ function App(): JSX.Element {
         />
         {/* <Terminal /> */}
       </div>
-      <div className="outputContainer">
+      <div className="w-1/3">
         <OutputWindow />
       </div>
     </div>
