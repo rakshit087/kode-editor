@@ -44,7 +44,30 @@ module.exports = {
     let count = 0;
     fileNames.forEach(async (name) => {
       const content = await readFileContent(name);
-      data[name] = content;
+      const extension = name.split(".").pop();
+      console.log(extension);
+      let type = "other";
+      if (extension == "py") {
+        type = "python";
+      } else if (extension == "html") {
+        type = "html";
+      } else if (extension == "css") {
+        type = "css";
+      } else if (extension == "js") {
+        type = "javascript";
+      } else if (extension == "java") {
+        type = "java";
+      } else if (extension == "c") {
+        type = "c";
+      } else if (extension == "sass") {
+        type = "sass";
+      } else if (extension == "less") {
+        type = "less";
+      }
+      data[name] = {
+        type: type,
+        content: content,
+      };
       if (count === fileNames.length - 1) {
         res.send(data);
       }
