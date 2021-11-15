@@ -12,21 +12,21 @@ import Data from "./interfaces/data";
 
 function App(): JSX.Element {
   const [data, setData] = useState<Data>({
-    'app.js': {
-      type: 'javascript',
-      content: ''
-    }
+    "index.html": {
+      type: "html",
+      content: "",
+    },
   });
 
   //Get data from server
   useEffect(() => {
     Initialize.getData().then((res) => {
+      console.log(res.data["index.html"].content);
       setData(res.data);
-      console.log(res);
     });
   }, []);
 
-  const [selectedFile, setSelectedFile] = useState<string>('app.js');
+  const [selectedFile, setSelectedFile] = useState<string>("index.html");
 
   //Update Selected File
   const callUpdateFile = (fileName: string) => {
@@ -59,9 +59,7 @@ function App(): JSX.Element {
           onAddNewFile={callAddNewFile}
         />
       </div>
-      <div
-        className="bg-dark w-1/2"
-      >
+      <div className="bg-dark w-1/2">
         <MonacoEditor
           type={data[selectedFile].type}
           name={selectedFile}

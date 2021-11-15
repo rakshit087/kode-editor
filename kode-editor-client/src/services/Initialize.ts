@@ -3,6 +3,6 @@ import Data from "../interfaces/data";
 
 export default {
   getData() {
-    return Api().get<Data>("initialize");
+    return Api().get<Data>("/files");
   },
 };
