@@ -26,7 +26,18 @@ function readFileContent(file) {
   });
 }
 
+// Write files of given File
+function writeFile(name, content) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile("./public/" + name, content, (err) => {
+      if (err) reject(false);
+      resolve(true);
+    });
+  });
+}
+
 module.exports = {
+  //Handle Get Request
   async get(req, res) {
     let data = {};
     const fileNames = await readFileNames();
@@ -39,5 +50,20 @@ module.exports = {
       }
       count++;
     });
+  },
+  //Handle Post Request
+  async post(req, res) {
+    const data = await req.body;
+    var size = Object.keys(data).length;
+    let count = 0;
+    for (const name in data) {
+      const status = await writeFile(name, data[name]);
+      if (status) {
+        count++;
+        if (count === size - 1) res.send({ status: true });
+      } else {
+        res.send({ status: false });
+      }
+    }
   },
 };
