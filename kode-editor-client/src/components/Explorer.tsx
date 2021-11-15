@@ -8,7 +8,7 @@ import Data from "../interfaces/data";
 interface Props {
   projectName: string;
   selectedFile: string;
-  projectFiles: Data
+  projectFiles: Data;
   onUpdateFile: (fileName: string) => void | undefined;
   onAddNewFile: (fileName: string, type: string) => void;
 }

@@ -6,7 +6,7 @@ import Explorer from "./components/Explorer";
 // import Terminal from "./components/Terminal";
 import OutputWindow from "./components/OutputWindow";
 //Import API Services
-import Initialize from "./services/Initialize";
+import fileServices from "./services/fileServices";
 //Import Interfaces
 import Data from "./interfaces/data";
 
@@ -20,7 +20,7 @@ function App(): JSX.Element {
 
   //Get data from server
   useEffect(() => {
-    Initialize.getData().then((res) => {
+    fileServices.getFiles().then((res) => {
       console.log(res.data["index.html"].content);
       setData(res.data);
     });
