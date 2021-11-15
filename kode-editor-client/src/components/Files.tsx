@@ -8,8 +8,6 @@ interface Props {
 }
 
 export default function Files(props: Props): JSX.Element {
-  console.log(props.name);
-  console.log(props.selected);
   return (
     <div
       className={`flex items-center px-3 py-1 m-auto text-sm text-offwhite cursor-pointer 
