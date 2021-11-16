@@ -1,8 +1,9 @@
 //Import Dependencies
 import { useState, useEffect } from "react";
-import MonacoEditor from "./components/MonacoEditor";
 //Import Components
 import Explorer from "./components/Explorer";
+import TopBar from "./components/TopBar";
+import MonacoEditor from "./components/MonacoEditor";
 // import Terminal from "./components/Terminal";
 import OutputWindow from "./components/OutputWindow";
 //Import API Services
@@ -12,21 +13,21 @@ import Data from "./interfaces/data";
 
 function App(): JSX.Element {
   const [data, setData] = useState<Data>({
-    "index.html": {
-      type: "html",
+    "script.js": {
+      type: "javascript",
       content: "",
     },
   });
+  const [refresh, setRefresh] = useState<number>(0);
 
   //Get data from server
   useEffect(() => {
     fileServices.getFiles().then((res) => {
-      console.log(res.data["index.html"].content);
       setData(res.data);
     });
   }, []);
 
-  const [selectedFile, setSelectedFile] = useState<string>("index.html");
+  const [selectedFile, setSelectedFile] = useState<string>("script.js");
 
   //Update Selected File
   const callUpdateFile = (fileName: string) => {
@@ -60,6 +61,12 @@ function App(): JSX.Element {
         />
       </div>
       <div className="bg-dark w-1/2">
+        <TopBar
+          data={data}
+          callSetData={setData}
+          callRefresh={setRefresh}
+          refresh={refresh}
+        />
         <MonacoEditor
           type={data[selectedFile].type}
           name={selectedFile}
@@ -69,7 +76,7 @@ function App(): JSX.Element {
         {/* <Terminal /> */}
       </div>
       <div className="w-1/3">
-        <OutputWindow />
+        <OutputWindow key={refresh} />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ interface Props {
 }
 
 export default function MonacoEditor(props: Props) {
+  console.log(props.content);
   return (
     <>
       <Editor
@@ -18,7 +19,7 @@ export default function MonacoEditor(props: Props) {
         language={props.type}
         defaultValue={props.content}
         beforeMount={setEditorTheme}
-        onMount={formatCode}
+        //onMount={formatCode}
         options={{
           minimap: {
             enabled: false,
