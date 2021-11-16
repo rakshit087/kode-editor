@@ -26,7 +26,7 @@ function readFileContent(file) {
   });
 }
 
-// Write files of given File
+// Write content to given File
 function writeFile(name, content) {
   return new Promise((resolve, reject) => {
     fs.writeFile("./public/" + name, content, (err) => {
@@ -45,7 +45,6 @@ module.exports = {
     fileNames.forEach(async (name) => {
       const content = await readFileContent(name);
       const extension = name.split(".").pop();
-      console.log(extension);
       let type = "other";
       if (extension == "py") {
         type = "python";
@@ -80,7 +79,7 @@ module.exports = {
     var size = Object.keys(data).length;
     let count = 0;
     for (const name in data) {
-      const status = await writeFile(name, data[name]);
+      const status = await writeFile(name, data[name].content);
       if (status) {
         count++;
         if (count === size - 1) res.send({ status: true });
