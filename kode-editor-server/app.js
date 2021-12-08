@@ -22,4 +22,4 @@ app.get("/files", Files.get);
 app.post("/files", Files.post);
 
 app.listen(8000);
-console.log("Server started!");
+console.log("Server started! Listening to port 8000.");
