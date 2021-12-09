@@ -1,5 +1,5 @@
 #Base Image
-FROM node
+FROM node:lts-alpine
 #Running Commands
 RUN mkdir /home/app
 WORKDIR /home/app

@@ -1,0 +1,8 @@
+version: "3"
+services:
+  ke-server:
+    image: ke-server
+    ports: [8000:8000]
+  ke-client:
+    image: ke-client
+    ports: [3000:3000]

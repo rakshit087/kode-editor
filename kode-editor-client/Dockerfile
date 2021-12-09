@@ -1,5 +1,5 @@
 #Base Image
-FROM node
+FROM node:lts-alpine
 #Running Commands
 RUN mkdir /home/app
 WORKDIR /home/app
@@ -9,5 +9,5 @@ COPY . /home/app
 RUN npm install
 #exposing ports
 EXPOSE 3000
-#Initial Command
-CMD ["npm","run","start"]
+# start app
+CMD ["npm", "start"]
